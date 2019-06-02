@@ -41,20 +41,28 @@ class App extends Component {
   // handleClick changes the state of this image
   handleClick = id => {
 
-    // We always use the setState method to update a component's state
-    // this.state.pictures[id-1].clicked ?  this.resetGame() : 
-    // (this.setState({ this.state.pictures[id-1].clicked: true),
-    //   this.setState({score: this.state.score++}));
+    // HLS this doesn't work because we shuffle the location
+    // How do we find the correct picture?
+    // let pic = this.state.pictures[id - 1];
 
-    let pic = this.state.pictures[id - 1];
+    let pic = this.state.pictures.find(o => o.id === id);
 
-    // HLS this works but we still need to modify state of picture to clicked: true
     pic.clicked ? this.resetGame() : this.goodPick(id);
 
+    // shuffle location, Can we simply shuffle the array?
+    // make a copy of the array
+    let newPictures = this.state.pictures.slice();
+    // HLS keep working on this
+    // shuffle the items in the array 
+    let newPictures1 = this.shuffle(newPictures);
+    console.log(newPictures1);
+
+    // set state to the new pictures array with the modified value
+    this.setState({ pictures: newPictures1 });
 
 
-    // shuffle location
   };
+
 
   // This means we had a successful click
   goodPick = id => {
@@ -64,8 +72,14 @@ class App extends Component {
 
     // make a copy of the array
     let newPictures = this.state.pictures.slice();
+    // HLS this doesn't work because we shuffle the array
     // modify the picture 
-    newPictures[id - 1].clicked = true;
+    // newPictures[id - 1].clicked = true;
+    let pic = newPictures.find(o => o.id === id);
+
+    // HLS hopefully this is a reference to the element in the array
+    pic.clicked = true;
+
     // set state to the new pictures array with the modified value
     this.setState({ pictures: newPictures });
 
@@ -75,11 +89,8 @@ class App extends Component {
     console.log("You already clicked this image");
     // reset score to 0
     this.setState({ score: 0 });
-    // reset all pictures.clicked to false
-    // this.state.pictures.map(pic => (
-    //   pic.clicked = false;
-    // ));
 
+    // reset all pictures.clicked to false
     // make a copy of the array
     let newPictures = this.state.pictures.slice();
     this.state.pictures.map(pic => (
@@ -90,6 +101,26 @@ class App extends Component {
     this.setState({ pictures: newPictures });
 
   };
+
+  // Fisher-Yates (aka Knuth) Shuffle.
+ shuffle = array => {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element... Once element is picked the currentIndex is reduced and so is the range of randomIndex
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+};
 
 
   render() {
