@@ -193,7 +193,8 @@ class App extends Component {
 
         <div className="fluid-container game">
           <GameImage images={this.state.pictures}
-            handleClick={this.handleClick}></GameImage>
+            handleClick={this.handleClick}
+            shake={this.state.score}></GameImage>
         </div>
 
         <div className="fluid-container footer ">
