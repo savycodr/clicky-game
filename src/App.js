@@ -52,17 +52,13 @@ class App extends Component {
     // shuffle location, Can we simply shuffle the array?
     // make a copy of the array
     let newPictures = this.state.pictures.slice();
-    // HLS keep working on this
     // shuffle the items in the array 
     let newPictures1 = this.shuffle(newPictures);
     console.log(newPictures1);
 
     // set state to the new pictures array with the modified value
     this.setState({ pictures: newPictures1 });
-
-
   };
-
 
   // This means we had a successful click
   goodPick = id => {
@@ -72,12 +68,7 @@ class App extends Component {
 
     // make a copy of the array
     let newPictures = this.state.pictures.slice();
-    // HLS this doesn't work because we shuffle the array
-    // modify the picture 
-    // newPictures[id - 1].clicked = true;
     let pic = newPictures.find(o => o.id === id);
-
-    // HLS hopefully this is a reference to the element in the array
     pic.clicked = true;
 
     // set state to the new pictures array with the modified value
@@ -85,10 +76,19 @@ class App extends Component {
 
   }
 
+  // Call this method when an image was clicked more than once
   resetGame() {
     console.log("You already clicked this image");
+
+    // maybe set a new high score
+    if (this.state.score > this.state.highScore)
+    {
+      this.setState({highScore: this.state.score});
+    }
+    
     // reset score to 0
     this.setState({ score: 0 });
+
 
     // reset all pictures.clicked to false
     // make a copy of the array
@@ -136,7 +136,7 @@ class App extends Component {
               <h1>Clicky Bird</h1>
             </div>
             <div className="col-md-4 align-self-end">
-              <h3>Score: {this.state.score} | Top Score: 3</h3>
+              <h3>Score: {this.state.score} | Top Score: {this.state.highScore}</h3>
             </div>
           </div>
         </div>
