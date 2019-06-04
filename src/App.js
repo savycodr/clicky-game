@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import './App.css';
-import JSXVariables from "./components/JSXVariables";
 import GameImage from "./components/GameImage";
 import "./styles/Header.css";
 
@@ -30,6 +29,54 @@ class App extends Component {
         id: 4,
         url: "/assets/img/blue-jay-3734030_640.jpg",
         alt: "bird4",
+        clicked: false
+      },
+      {
+        id: 5,
+        url: "/assets/img/duck-1884934_640.jpg",
+        alt: "bird5",
+        clicked: false
+      },
+      {
+        id: 6,
+        url: "/assets/img/guacamaya-4132823_640.jpg",
+        alt: "bird6",
+        clicked: false
+      },
+      {
+        id: 7,
+        url: "/assets/img/mallard-3524213_640.jpg",
+        alt: "bird7",
+        clicked: false
+      },
+      {
+        id: 8,
+        url: "/assets/img/robin-4225979_640.jpg",
+        alt: "bird8",
+        clicked: false
+      },
+      {
+        id: 9,
+        url: "/assets/img/spring-bird-2295434_640.jpg",
+        alt: "bird9",
+        clicked: false
+      },
+      {
+        id: 10,
+        url: "/assets/img/swan-4208564_640.jpg",
+        alt: "bird10",
+        clicked: false
+      },
+      {
+        id: 11,
+        url: "/assets/img/tit-4228129_640.jpg",
+        alt: "bird11",
+        clicked: false
+      },
+      {
+        id: 12,
+        url: "/assets/img/tit-4230128_640.jpg",
+        alt: "bird12",
         clicked: false
       }
     ],
@@ -152,7 +199,6 @@ class App extends Component {
         <div className="fluid-container footer ">
         </div>
 
-        <JSXVariables />
       </div>
     );
   }
